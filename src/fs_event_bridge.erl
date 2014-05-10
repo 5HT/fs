@@ -6,7 +6,6 @@
 init([Pid]) -> {ok, Pid}.
 
 handle_event(Event, Pid) ->
-    io:format("Event: ~p",[Event]),
     Pid ! Event,
     {ok, Pid}.
 
