@@ -2,7 +2,7 @@
 -include("api.hrl").
 -export(?API).
 
-find_executable() -> os:find_executable("fsevent_watch").
+find_executable() -> filename:join(code:priv_dir(fs), "mac_listener").
 known_events() ->
     [mustscansubdirs,userdropped,kerneldropped,eventidswrapped,historydone,rootchanged,
         mount,unmount,created,removed,inodemetamod,renamed,modified,finderinfomod,changeowner,
@@ -15,8 +15,6 @@ start_port(Path, Cwd) ->
 line_to_event(Line) ->
     [_EventId, Flags1, Path] = string:tokens(Line, [$\t]),
     [_, Flags2] = string:tokens(Flags1, [$=]),
-
     {ok, T, _} = erl_scan:string(Flags2 ++ "."),
     {ok, Flags} = erl_parse:parse_term(T),
-
     {Path, Flags}.
