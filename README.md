@@ -9,11 +9,7 @@ Backends
         [inotify](https://github.com/rvoicilas/inotify-tools/wiki)
 * Windows [changenotifications]()
 
-On Linux you need to install inotify-tools.
-
-The application relies on the appropriate binaries to be in your `$PATH`.
-The monitoring path is read from the application configuration (variable `path`).
-Once the `FS` app is started you may use the simple API:
+NOTE: On Linux you need to install inotify-tools.
 
 ### Subscribe to Notifications
 
