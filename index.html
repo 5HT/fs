@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="FS : Erlang FileSystem Listener" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>FS</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/synrc/fs">View on GitHub</a>
+
+          <h1 id="project_title">FS</h1>
+          <h2 id="project_tagline">Erlang FileSystem Listener</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/synrc/fs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/synrc/fs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="fs-listener" class="anchor" href="#fs-listener"><span class="octicon octicon-link"></span></a>FS Listener</h1>
+
+<h2>
+<a name="backends" class="anchor" href="#backends"><span class="octicon octicon-link"></span></a>Backends</h2>
+
+<ul>
+<li>Mac <a href="https://github.com/thibaudgg/rb-fsevent">fsevent</a>
+</li>
+<li>Linux <a href="https://launchpad.net/fatrace">fanotify</a> and 
+    <a href="https://github.com/rvoicilas/inotify-tools/wiki">inotify</a>
+</li>
+<li>Windows <a href="">changenotifications</a>
+</li>
+</ul><p>NOTE: On Linux you need to install inotify-tools.</p>
+
+<h3>
+<a name="subscribe-to-notifications" class="anchor" href="#subscribe-to-notifications"><span class="octicon octicon-link"></span></a>Subscribe to Notifications</h3>
+
+<div class="highlight highlight-erlang"><pre><span class="o">&gt;</span> <span class="nn">fs</span><span class="p">:</span><span class="nf">subscribe</span><span class="p">().</span> <span class="c">% the pid will receive events as messages</span>
+<span class="o">&gt;</span> <span class="n">flush</span><span class="p">().</span> 
+<span class="nv">Shell</span> <span class="n">got</span> <span class="p">{</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">47</span><span class="p">.</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">,</span>
+           <span class="p">{</span><span class="n">fs</span><span class="p">,</span><span class="n">file_event</span><span class="p">},</span>
+           <span class="p">{</span><span class="s">"/Users/5HT/synrc/fs/src/README.md"</span><span class="p">,[</span><span class="n">closed</span><span class="p">,</span><span class="n">modified</span><span class="p">]}}</span>
+</pre></div>
+
+<h3>
+<a name="list-events-from-backend" class="anchor" href="#list-events-from-backend"><span class="octicon octicon-link"></span></a>List Events from Backend</h3>
+
+<div class="highlight highlight-erlang"><pre><span class="o">&gt;</span> <span class="nn">fs</span><span class="p">:</span><span class="nf">known_events</span><span class="p">().</span> <span class="c">% returns events known by your current backend</span>
+<span class="p">[</span><span class="n">mustscansubdirs</span><span class="p">,</span><span class="n">userdropped</span><span class="p">,</span><span class="n">kerneldropped</span><span class="p">,</span><span class="n">eventidswrapped</span><span class="p">,</span>
+ <span class="n">historydone</span><span class="p">,</span><span class="n">rootchanged</span><span class="p">,</span><span class="n">mount</span><span class="p">,</span><span class="n">unmount</span><span class="p">,</span><span class="n">created</span><span class="p">,</span><span class="n">removed</span><span class="p">,</span>
+ <span class="n">inodemetamod</span><span class="p">,</span><span class="n">renamed</span><span class="p">,</span><span class="n">modified</span><span class="p">,</span><span class="n">finderinfomod</span><span class="p">,</span><span class="n">changeowner</span><span class="p">,</span>
+ <span class="n">xattrmod</span><span class="p">,</span><span class="n">isfile</span><span class="p">,</span><span class="n">isdir</span><span class="p">,</span><span class="n">issymlink</span><span class="p">,</span><span class="n">ownevent</span><span class="p">]</span>
+</pre></div>
+
+<h3>
+<a name="sample-subscriber" class="anchor" href="#sample-subscriber"><span class="octicon octicon-link"></span></a>Sample Subscriber</h3>
+
+<div class="highlight highlight-erlang"><pre><span class="o">&gt;</span> <span class="nn">fs</span><span class="p">:</span><span class="nf">start_logger</span><span class="p">().</span> <span class="c">% starts a sample process that logs events with error_logger</span>
+<span class="o">=</span><span class="nv">INFO</span> <span class="nv">REPORT</span><span class="o">====</span> <span class="mi">28</span><span class="o">-</span><span class="nv">Aug</span><span class="o">-</span><span class="mi">2013</span><span class="p">::</span><span class="mi">19</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">26</span> <span class="o">===</span>
+<span class="nn">file_event</span><span class="p">:</span> <span class="s">"/tank/proger/erlfsmon/src/4913"</span> <span class="p">[</span><span class="n">closed</span><span class="p">,</span><span class="n">modified</span><span class="p">]</span>
+</pre></div>
+
+<h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<ul>
+<li>Vladimir Kirillov</li>
+<li>Maxim Sokhatsky</li>
+</ul><p>OM A HUM</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">FS maintained by <a href="https://github.com/synrc">synrc</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
