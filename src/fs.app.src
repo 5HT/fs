@@ -1,6 +1,6 @@
 {application, fs, 
  [{description, "VXZ FS Listener"},
-  {vsn, git},
+  {vsn, "1"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},
