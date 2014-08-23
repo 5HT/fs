@@ -1,8 +1,33 @@
 -module(fsevents).
 -include("api.hrl").
+-include_lib("kernel/include/file.hrl").
 -export(?API).
 
-find_executable() -> filename:join(code:priv_dir(fs), "mac_listener").
+read_file(StringPath) ->
+    [_,Name|RestPath] = filename:split(StringPath),
+    case file:read_file(StringPath) of
+    {ok,Bin} -> {local,StringPath,Bin};
+    {error,_} ->
+        case mad_repl:load_file(StringPath) of
+        {error,_} ->
+            ReleaseName = filename:join([code:lib_dir(Name)|RestPath]),
+            case file:read_file(ReleaseName) of
+            {ok,ReleaseFile} -> {release,ReleaseName,ReleaseFile};
+            {error,_} -> {absent,"",<<>>} end;
+        {ok,ETSFile} -> {ets,StringPath,ETSFile} end end.
+
+find_executable() ->
+    StringName = "deps/fs/priv/mac_listener",
+    case read_file(StringName) of
+      {ets,EName,Bin} ->
+          filelib:ensure_dir(EName),
+          file:write_file(EName,Bin),
+          file:write_file_info(EName, #file_info{mode=8#00555}),
+          EName;
+      {release,RName,_} -> RName;
+      {absent,_,_} -> false;
+      {local,LName,_} -> LName end.
+
 known_events() ->
     [mustscansubdirs,userdropped,kerneldropped,eventidswrapped,historydone,rootchanged,
         mount,unmount,created,removed,inodemetamod,renamed,modified,finderinfomod,changeowner,

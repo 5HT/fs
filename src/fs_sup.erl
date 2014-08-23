@@ -11,9 +11,10 @@ init([]) ->
         {unix, darwin} -> fsevents;
         {unix, linux} -> inotifywait;
         %{unix, linux} -> fanotify;
+        %{win32, nt} -> fanotify;
         _ -> throw(os_not_supported) end,
     case Backend:find_executable() of
-        false -> throw(executable_not_found);
+        false -> io:format("Backend port not found: ~p~n\r",[Backend]);
         _ -> ok end,
     Path = fs:path(),
     {ok, { {one_for_one, 5, 10}, [
