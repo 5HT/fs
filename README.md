@@ -7,7 +7,7 @@ Backends
 * Mac [fsevent](https://github.com/thibaudgg/rb-fsevent)
 * Linux [fanotify](https://launchpad.net/fatrace) and 
         [inotify](https://github.com/rvoicilas/inotify-tools/wiki)
-* Windows [changenotifications]()
+* Windows [inotify-win](https://github.com/thekid/inotify-win)
 
 NOTE: On Linux you need to install inotify-tools.
 
