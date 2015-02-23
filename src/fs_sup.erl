@@ -10,8 +10,7 @@ init([]) ->
     Backend = case os:type() of
         {unix, darwin} -> fsevents;
         {unix, linux} -> inotifywait;
-        %{unix, linux} -> fanotify;
-        %{win32, nt} -> fanotify;
+        {win32, nt} -> inotifywait_win32;
         _ -> throw(os_not_supported) end,
     case Backend:find_executable() of
         false -> io:format("Backend port not found: ~p~n\r",[Backend]);
