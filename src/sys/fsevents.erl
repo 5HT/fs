@@ -17,7 +17,7 @@ read_file(StringPath) ->
         {ok,ETSFile} -> {ets,StringPath,ETSFile} end end.
 
 find_executable() ->
-    StringName = "deps/fs/priv/mac_listener",
+    StringName = filename:join(code:priv_dir(fs), "mac_listener"),
     case read_file(StringName) of
       {ets,EName,Bin} ->
           filelib:ensure_dir(EName),

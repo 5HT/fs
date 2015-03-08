@@ -12,10 +12,14 @@ init([]) ->
         {unix, linux} -> inotifywait;
         {win32, nt} -> inotifywait_win32;
         _ -> throw(os_not_supported) end,
-    case Backend:find_executable() of
-        false -> io:format("Backend port not found: ~p~n\r",[Backend]);
-        _ -> ok end,
-    Path = fs:path(),
-    {ok, { {one_for_one, 5, 10}, [
-                ?CHILD(fs_server, worker, [Backend, Path, Path]),
-                ?CHILD(gen_event, worker, [{local, fs_events}]) ] } }.
+
+    Children = case Backend:find_executable() of
+        false ->
+            error_logger:error_msg("Backend port not found: ~p~n",[Backend]),
+            [];
+        _ ->
+            Path = fs:path(),
+            [?CHILD(fs_server, worker, [Backend, Path, Path])] end,
+
+    {ok, { {one_for_one, 5, 10},
+        Children ++ [?CHILD(gen_event, worker, [{local, fs_events}])]} }.
