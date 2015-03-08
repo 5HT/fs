@@ -1,35 +1,9 @@
 -module(fsevents).
 -include("api.hrl").
--include_lib("kernel/include/file.hrl").
 -export(?API).
 
-mad_file(StringPath) ->
-    case filelib:is_regular(StringPath) of
-    true  -> StringPath;
-    false ->
-        case mad_repl:load_file(StringPath) of
-        {error,_} ->
-            %% This path has been already checked in find_executable/0
-            false;
-        {ok,ETSFile} ->
-            filelib:ensure_dir(StringPath),
-            file:write_file(StringPath, ETSFile),
-            file:write_file_info(StringPath, #file_info{mode=8#00555}) end end.
-
-priv_file(Cmd) ->
-    case code:priv_dir(fs) of
-    Priv when is_list(Priv) ->
-        Path = filename:join(Priv, Cmd),
-        case filelib:is_regular(Path) of
-        true  -> Path;
-        false -> false end;
-    _ ->
-        false end.
-
 find_executable() ->
-    case priv_file("mac_listener") of
-    false -> mad_file("deps/fs/priv/mac_listener");
-    Priv  -> Priv end.
+    fs:find_executable("mac_listener", "deps/fs/priv/mac_listener").
 
 known_events() ->
     [mustscansubdirs,userdropped,kerneldropped,eventidswrapped,historydone,rootchanged,
