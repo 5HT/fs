@@ -3,24 +3,30 @@
 -include_lib("kernel/include/file.hrl").
 -export(?API).
 
-mad_file(StringPath) ->
-    case filelib:exists(StringPath) of
-    true  -> StringPath;
-    false ->
+read_file(StringPath) ->
+    [_,Name|RestPath] = filename:split(StringPath),
+    case file:read_file(StringPath) of
+    {ok,Bin} -> {local,StringPath,Bin};
+    {error,_} ->
         case mad_repl:load_file(StringPath) of
         {error,_} ->
-            %% This path has been already checked in find_executable/0
-            false;
-        {ok,ETSFile} ->
-            filelib:ensure_dir(StringPath),
-            file:write_file(StringPath, ETSFile),
-            file:write_file_info(StringPath, #file_info{mode=8#00555}) end end.
+            ReleaseName = filename:join([code:lib_dir(Name)|RestPath]),
+            case file:read_file(ReleaseName) of
+            {ok,ReleaseFile} -> {release,ReleaseName,ReleaseFile};
+            {error,_} -> {absent,"",<<>>} end;
+        {ok,ETSFile} -> {ets,StringPath,ETSFile} end end.
 
 find_executable() ->
-    Priv = filename:join(code:priv_dir(fs), "mac_listener"),
-    case filelib:is_regular(Priv) of
-    true -> Priv;
-    false -> mad_file("deps/fs/priv/mac_listener") end.
+    StringName = "deps/fs/priv/mac_listener",
+    case read_file(StringName) of
+      {ets,EName,Bin} ->
+          filelib:ensure_dir(EName),
+          file:write_file(EName,Bin),
+          file:write_file_info(EName, #file_info{mode=8#00555}),
+          EName;
+      {release,RName,_} -> RName;
+      {absent,_,_} -> false;
+      {local,LName,_} -> LName end.
 
 known_events() ->
     [mustscansubdirs,userdropped,kerneldropped,eventidswrapped,historydone,rootchanged,
