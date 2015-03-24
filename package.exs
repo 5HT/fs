@@ -3,7 +3,7 @@ defmodule FS.Mixfile do
 
   def project do
     [app: :fs,
-     version: "0.9.0",
+     version: "0.9.1",
      description: "Erlang FileSystem Listener",
      package: package]
   end
