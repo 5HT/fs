@@ -9,6 +9,7 @@ init([]) ->
     Backend = case os:type() of
         {unix, darwin} -> fsevents;
         {unix, linux} -> inotifywait;
+        {unix, _} -> kqueue;
         {win32, nt} -> inotifywait_win32;
         _ -> undefined end,
 

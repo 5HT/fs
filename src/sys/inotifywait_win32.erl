@@ -19,7 +19,7 @@ line_to_event(Line) ->
     Path = filename:join(Dir,DirEntry),
     {Path, Flags}.
 
-    
+
 convert_flag("CREATE") -> created;
 convert_flag("MODIFY") -> modified;
 convert_flag("DELETE") -> removed;
