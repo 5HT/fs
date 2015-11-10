@@ -13,7 +13,8 @@ NOTE: On Linux you need to install inotify-tools.
 ### Subscribe to Notifications
 
 ```erlang
-> fs:subscribe(). % the pid will receive events as messages
+> fs:start_link(fs_watcher, "/Users/5HT/synrc/fs"). % need to start the fs watcher
+> fs:subscribe(fs_watcher). % the pid will receive events as messages
 > flush(). 
 Shell got {<0.47.0>,
            {fs,file_event},
@@ -23,7 +24,7 @@ Shell got {<0.47.0>,
 ### List Events from Backend
 
 ```erlang
-> fs:known_events(). % returns events known by your current backend
+> fs:known_events(fs_watcher). % returns events known by your current backend
 [mustscansubdirs,userdropped,kerneldropped,eventidswrapped,
  historydone,rootchanged,mount,unmount,created,removed,
  inodemetamod,renamed,modified,finderinfomod,changeowner,
