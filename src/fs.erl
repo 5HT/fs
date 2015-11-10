@@ -1,8 +1,11 @@
 -module(fs).
 -include_lib("kernel/include/file.hrl").
--export([subscribe/0, known_events/0, start_looper/0, path/0, find_executable/2]).
+-export([start_link/4, subscribe/1, known_events/0, start_looper/0, path/0, find_executable/2]).
 
 % sample subscriber
+
+start_link(SupName, EventHandler, FileHandler, Path) -> fs_sup:start_link(SupName, EventHandler, FileHandler, Path).
+subscribe(Name) -> gen_event:add_sup_handler(Name, {fs_event_bridge, self()}, [self()]).
 
 subscribe() -> gen_event:add_sup_handler(fs_events, {fs_event_bridge, self()}, [self()]).
 known_events() -> gen_server:call(fs_server, known_events).
