@@ -1,1 +1,6 @@
 deps/
+priv/mac_listener
+*.d
+*.o
+.rebar
+ebin/
