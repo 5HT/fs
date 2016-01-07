@@ -4,4 +4,6 @@
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},
-  {env, []}]}.
+  {env, [
+      {backwards_compatible, true}
+  ]}]}.

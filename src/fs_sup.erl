@@ -1,11 +1,12 @@
 -module(fs_sup).
 -behaviour(supervisor).
--export([start_link/0]).
+-export([start_link/4]).
 -export([init/1]).
 -define(CHILD(I, Type, Args), {I, {I, start_link, Args}, permanent, 5000, Type, [I]}).
 
-start_link() -> supervisor:start_link({local, ?MODULE}, ?MODULE, []).
-init([]) ->
+start_link(SupName, EventHandler, FileHandler, Path) ->
+    supervisor:start_link({local, SupName}, ?MODULE, [EventHandler, FileHandler, Path]).
+init([EventHandler, FileHandler, Path]) ->
     Backend = case os:type() of
         {unix, darwin} -> fsevents;
         {unix, linux} -> inotifywait;
@@ -15,10 +16,10 @@ init([]) ->
 
     Children = case has_executable(Backend) of
         false -> [];
-        true  -> Path = fs:path(), [?CHILD(fs_server, worker, [Backend, Path, Path])] end,
+        true  -> [?CHILD(fs_server, worker, [FileHandler, EventHandler, Backend, Path, Path])] end,
 
     {ok, { {one_for_one, 5, 10},
-        Children ++ [?CHILD(gen_event, worker, [{local, fs_events}])]} }.
+        Children ++ [?CHILD(gen_event, worker, [{local, EventHandler}])]} }.
 
 has_executable(undefined) ->
     os_not_supported(), false;
