@@ -23,7 +23,7 @@ line_to_event(Line) ->
 convert_flag("CREATE") -> created;
 convert_flag("MODIFY") -> modified;
 convert_flag("DELETE") -> removed;
-convert_flag("MOVE") -> renamed;
+convert_flag("MOVED_TO") -> renamed;
 convert_flag(_) -> undefined.
 
 re() ->
