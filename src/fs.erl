@@ -1,11 +1,11 @@
 -module(fs).
 -include_lib("kernel/include/file.hrl").
 -export([start_link/1, start_link/2, subscribe/0, subscribe/1, known_events/0, known_events/1,
-         start_looper/0, start_looper/1, find_executable/2]).
+         start_looper/0, start_looper/1, find_executable/2, path/0]).
 
 % sample subscriber
 
-start_link(Name) -> start_link(Name, default_path()).
+start_link(Name) -> start_link(Name, path()).
 start_link(Name, Path) ->
     SupName = name(Name, "sup"),
     FileHandler = name(Name, "file"),
@@ -14,7 +14,7 @@ start_link(Name, Path) ->
 subscribe() -> subscribe(default_fs).
 subscribe(Name) -> gen_event:add_sup_handler(Name, {fs_event_bridge, self()}, [self()]).
 
-default_path() ->
+path() ->
     case application:get_env(fs, path) of
         {ok, P} -> filename:absname(P);
         undefined -> filename:absname("") end.
