@@ -1,9 +1,13 @@
 {application, fs,
  [{description, "FS VXZ Listener"},
-  {vsn, "1.9"},
+  {vsn, "1.10"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},
   {env, [
       {backwards_compatible, true}
-  ]}]}.
+  ]},
+  {maintainers,["Maxim Sokhatsky", "Vladimir Kirillov"]},
+  {licenses, ["ISCL"]},
+  {links,[{"Github","https://github.com/synrc/fs"}]}
+  ]}.
