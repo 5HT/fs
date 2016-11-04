@@ -34,7 +34,7 @@ Shell got {<0.47.0>,
 ### Sample Subscriber
 
 ```erlang
-> fs:start_logger(). % starts a sample process that logs events with error_logger
+> fs:start_looper(). % starts a sample process that logs events with error_logger
 =INFO REPORT==== 28-Aug-2013::19:36:26 ===
 file_event: "/tank/proger/erlfsmon/src/4913" [closed,modified]
 ```
