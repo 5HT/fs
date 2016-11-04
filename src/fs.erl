@@ -38,7 +38,7 @@ find_executable(Cmd, DepsPath) ->
 
 mad_file(DepsPath) ->
     case filelib:is_regular(DepsPath) of
-    true  -> DepsPath;
+    true  -> path() ++ "/" ++ DepsPath;
     false ->
         case mad_repl:load_file(DepsPath) of
         {error,_} ->
