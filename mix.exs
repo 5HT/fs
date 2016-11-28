@@ -5,6 +5,7 @@ defmodule FS.Mixfile do
     [app: :fs,
      version: "2.11.0",
      description: "Erlang File System Listener",
+     deps: deps,
      package: package]
   end
 
@@ -15,4 +16,8 @@ defmodule FS.Mixfile do
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/synrc/fs"}]
    end
+
+  defp deps do
+     [{:ex_doc, ">= 0.0.0", only: :dev}]
+  end
 end
