@@ -6,6 +6,7 @@ defmodule FS.Mixfile do
      version: "2.11.0",
      description: "Erlang File System Listener",
      deps: deps,
+     docs: [],
      package: package]
   end
 
