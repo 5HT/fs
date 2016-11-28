@@ -1,6 +1,6 @@
 {application, fs,
  [{description, "FS VXZ Listener"},
-  {vsn, "1.10"},
+  {vsn, "2.11"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},
