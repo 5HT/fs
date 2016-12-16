@@ -12,7 +12,7 @@ defmodule FS.Mixfile do
 
   defp package do
     [name: :fs,
-     files: ["include", "priv", "src", "LICENSE", "mix.exs", "README.md", "rebar.config"],
+     files: ["include", "priv", "src", "c_src", "LICENSE", "mix.exs", "README.md", "rebar.config"],
      maintainers: ["Vladimir Kirillov", "Namdak Tonpa"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/synrc/fs"}]
