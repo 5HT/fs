@@ -22,6 +22,7 @@ line_to_event(Line) ->
 convert_flag("CREATE") -> created;
 convert_flag("DELETE") -> deleted;
 convert_flag("ISDIR") -> isdir;
+convert_flag("MODIFY") -> modified;
 convert_flag("CLOSE_WRITE") -> modified;
 convert_flag("CLOSE") -> closed;
 convert_flag("MOVED_TO") -> renamed;
