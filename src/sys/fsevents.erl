@@ -3,7 +3,9 @@
 -export(?API).
 
 find_executable() ->
-    fs:find_executable("mac_listener", "deps/fs/priv/mac_listener").
+    case application:get_env(fs, events_helper) of
+        {ok, P} -> fs:find_executable("mac_listener", P);
+        undefined -> fs:find_executable("mac_listener", "deps/fs/priv/mac_listener") end.
 
 known_events() ->
     [mustscansubdirs,userdropped,kerneldropped,eventidswrapped,historydone,rootchanged,
