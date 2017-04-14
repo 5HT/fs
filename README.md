@@ -62,9 +62,12 @@ This option will lead, that default fs watcher willn't be started.
 
 ### Hex.pm publication
 
-```
-MIX_EXS=package.exs mix hex.publish package
-```
+Follow the [Publishing a (rebar3) package](https://hex.pm/docs/rebar3_publish)
+instruments. In short:
+
+ 1. Install the [rebar3_hex](https://github.com/hexpm/rebar3_hex) plugin.
+ 2. Authenticate (`rebar3 hex user auth`) if you haven't done so already.
+ 3. Publish the new version using `rebar3 hex publish`.
 
 Credits
 -------

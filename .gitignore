@@ -3,6 +3,7 @@ priv/mac_listener
 *.d
 *.o
 .rebar
+.rebar3/
 ebin/
 _build/
 rebar.lock
