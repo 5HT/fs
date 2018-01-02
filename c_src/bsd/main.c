@@ -11,12 +11,9 @@ int main(int argc, char *argv[]) {
     int fd, kq, nev;
     if ((fd = open(argv[1], O_RDONLY)) == -1) return 1;
     EV_SET(&change, fd, EVFILT_VNODE , EV_ADD
-                                     | EV_ENABLE
-                                     | EV_DISABLE
                                      | EV_CLEAR
                                      | EV_DELETE
                                      | EV_EOF
-                                     | EV_RECEIPT
                                      | EV_DISPATCH
                                      | EV_ONESHOT,
                                        NOTE_DELETE
