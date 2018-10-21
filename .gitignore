@@ -1,8 +1,5 @@
-deps/
+deps
 priv/mac_listener
 *.d
 *.o
-.rebar
-ebin/
-_build/
-rebar.lock
+ebin

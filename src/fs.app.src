@@ -1,11 +1,11 @@
 {application, fs,
  [{description, "FS VXZ Listener"},
-  {vsn, "4.1.0"},
+  {vsn, "4.10"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},
   {env, [ {backwards_compatible, true} ]},
   {maintainers,["Maxim Sokhatsky", "Vladimir Kirillov"]},
-  {licenses, ["ISCL"]},
+  {licenses, ["ISC"]},
   {links,[{"Github","https://github.com/synrc/fs"}]}
   ]}.
