@@ -1,0 +1,101 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Maxim Sokhatsky" />
+    <title>FS</title>
+    <link rel="stylesheet" href="https://synrc.space/synrc.css?v=2" />
+</head>
+<body>
+    <nav>
+        <a href='https://n2o.space'>ECO</a>
+        <a href='https://o7.network'>O7</a>
+    </nav>
+    <header>
+        <a href="https://o7.network"><img src="https://synrc.space/images/Synrc Neo.svg?v=1"></a>
+        <h1>FS</h1>
+    </header>
+    <aside>
+        <article>
+            <section>
+                <h3>SYNOPSIS</h3>
+                <div>FS is a native file system listener for Windows, Linux and Mac
+                     which is using by both Elixir and Synrc communities.</div>
+            <figure><code>
+ git clone git://github.com/synrc/fs
+            </code></figure>
+            </section>
+            <section>
+            <h3>MODULES</h3>
+            <div><ul>
+                <li><a href="https://github.com/thibaudgg/rb-fsevent">fsevent</a> (Mac)</font></li>
+                <li><a href="https://github.com/rvoicilas/inotify-tools/wiki">inotify</a> (Linux)</font></li>
+                <li><a href="https://github.com/thekid/inotify-win">inotify-win</a> (Windows)</font></li>
+            </ul></div>
+            <br>
+            <div>
+                Nov 2018 &copy; <a href="https://github.com/proger">Darkproger</a> ISC
+            </div>
+            </section>
+        </article>
+    </aside>
+    <main>
+    <section>
+        <a name=intro><h3>INTRO</h3></a>
+     <h4>Subscribe to Notifications</h4>
+        <figure><code>
+ > fs:start_link(fs_watcher, "/Users/5HT/synrc/fs").
+ > fs:subscribe(fs_watcher).
+ > flush().
+ Shell got {<0.47.0>,{fs,file_event},
+                     {"/Users/5HT/synrc/fs/src/README.md",
+                      [closed,modified]}}
+        </code></figure>
+     <h4>Native Events</h4>
+        <figure><code>
+ > fs:known_events(fs_watcher).
+  [mustscansubdirs,userdropped,kerneldropped,eventidswrapped,
+   historydone,rootchanged,mount,unmount,created,removed,
+   inodemetamod,renamed,modified,finderinfomod,changeowner,
+   xattrmod,isfile,isdir,issymlink,ownevent]
+        </code></figure>
+     <h4>Sample Scheduler</h4>
+        <figure><code>
+ > fs:start_looper().
+ =INFO REPORT==== 28-Aug-2013::19:36:26 ===
+ file_event: "/tank/proger/erlfsmon/src/4913" [closed,modified]
+        </code></figure>
+    </section>
+    <section>
+        <a name=intro><h3>COMPAT</h3></a>
+        <p> API is per default compatible to version before 1.10.
+            By application start, <b>fs</b> will start fs watcher on specified per enviroment <b>path</b> or
+            if enviroment is unsetted, than in <b>CWD</b>.
+            That means you can still use it, like:</p>
+        <figure><code>
+ > fs:subscribe().
+        </code></figure>
+        <p>If you do not want to use backwards_compatible mode, disable it by setting <b>fs</b> enviroment:</p>
+        <figure><code>
+ {backwards_compatible, false}
+        </code></figure>
+        <p>This option will lead, that default fs watcher willn't be started.</p>
+    </section>
+    <section>
+        <a name=plugin><h3>CONTRIBUTORS</h3></a>
+        <div>
+        <ul>
+           <li><a href="https://github.com/5HT">5HT</a> &mdash; Namdak Tonpa</li>
+           <li><a href="https://github.com/proger">proger</a> &mdash; Vlad Ki</li>
+        </ul></div>
+    </section>
+</main>
+
+<footer>
+    Made with <span class="heart">❤</span> to N2O
+</footer>
+
+</body>
+</html>
