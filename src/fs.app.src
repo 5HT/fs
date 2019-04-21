@@ -1,6 +1,6 @@
 {application, fs,
- [{description, "FS VXZ Listener"},
-  {vsn, "4.10"},
+ [{description, "FS Mac Linux Windows"},
+  {vsn, "5.5"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},
