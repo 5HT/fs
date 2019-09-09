@@ -1,5 +1,6 @@
 FS Listener
 ===========
+[![Hex pm](http://img.shields.io/hexpm/v/fs.svg?style=flat)](https://hex.pm/packages/fs)
 
 Backends
 --------
