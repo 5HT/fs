@@ -40,7 +40,7 @@ mad_file(DepsPath) ->
     case filelib:is_regular(DepsPath) of
     true  -> path() ++ "/" ++ DepsPath;
     false ->
-        case mad_repl:load_file(DepsPath) of
+        case load_file(DepsPath) of
         {error,_} ->
             %% This path has been already checked in find_executable/2
             false;
@@ -62,3 +62,14 @@ priv_file(Cmd) ->
 name(Name, Prefix) ->
     NameList = erlang:atom_to_list(Name),
     list_to_atom(NameList ++ Prefix).
+
+ets_created() ->
+     case ets:info(filesystem) of
+          undefined -> ets:new(filesystem,[set,named_table,{keypos,1},public]);
+          _ -> skip end.
+
+ load_file(Name)  ->
+     ets_created(),
+     case ets:lookup(filesystem,Name) of
+         [{Name,Bin}] -> {ok,Bin};
+         _ -> {error,etsfs} end.
