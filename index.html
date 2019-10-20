@@ -63,21 +63,6 @@
         </code></figure>
     </section>
     <section>
-        <a name="intro"></a><h3>COMPAT</h3>
-        <p> API is per default compatible to version before 1.10.
-            By application start, <b>fs</b> will start fs watcher on specified per enviroment <b>path</b> or
-            if enviroment is unsetted, than in <b>CWD</b>.
-            That means you can still use it, like:</p>
-        <figure><code>
- > fs:subscribe().
-        </code></figure>
-        <p>If you do not want to use backwards_compatible mode, disable it by setting <b>fs</b> enviroment:</p>
-        <figure><code>
- {backwards_compatible, false}
-        </code></figure>
-        <p>This option will lead, that default fs watcher willn't be started.</p>
-    </section>
-    <section>
         <a name="plugin"></a><h3>CONTRIBUTORS</h3>
         <div>
         <ul><li><a href="https://github.com/5HT">5HT</a> — Namdak Tonpa</li><li><a href="https://github.com/proger">proger</a> — Vlad Ki</li></ul></div>
