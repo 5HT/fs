@@ -61,12 +61,6 @@ If you do not want to use backwards_compatible mode, disable it by setting `fs` 
 
 This option will lead, that default fs watcher willn't be started.
 
-### Hex.pm publication
-
-```
-MIX_EXS=package.exs mix hex.publish package
-```
-
 Credits
 -------
 

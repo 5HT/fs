@@ -1,6 +1,6 @@
 {application, fs,
  [{description, "FS Mac Linux Windows"},
-  {vsn, "5.5.0"},
+  {vsn, "4.10.1"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},

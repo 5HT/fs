@@ -3,8 +3,8 @@ defmodule FS.Mixfile do
 
   def project do
     [app: :fs,
-     version: "4.10.0",
-     description: "Erlang File System Listener",
+     version: "4.10.1",
+     description: "FS Native Listener",
      deps: deps,
      docs: [],
      package: package]
@@ -19,6 +19,6 @@ defmodule FS.Mixfile do
    end
 
   defp deps do
-     [{:ex_doc, ">= 0.0.0", only: :dev}]
+     [{:ex_doc, "~> 0.11", only: :dev}]
   end
 end
