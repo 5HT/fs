@@ -1,5 +1,6 @@
 FS Listener
 ===========
+[![Build Status](https://travis-ci.org/synrc/fs.svg?branch=master)](https://travis-ci.org/synrc/fs)
 [![Hex pm](http://img.shields.io/hexpm/v/fs.svg?style=flat)](https://hex.pm/packages/fs)
 
 Backends
