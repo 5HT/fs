@@ -2,7 +2,7 @@ FS: Native Listener (Mac Windows Linux)
 =======================================
 
 [![Actions Status](https://github.com/synrc/fs/workflows/mix/badge.svg)](https://github.com/synrc/fs/actions)
-[![Build Status](https://travis-ci.org/synrc/fs.svg?branch=master)](https://travis-ci.org/synrc/fs)
+[![Build Status](https://travis-ci.com/synrc/fs.svg?branch=master)](https://travis-ci.com/synrc/fs)
 [![Hex pm](http://img.shields.io/hexpm/v/fs.svg?style=flat)](https://hex.pm/packages/fs)
 
 Backends
