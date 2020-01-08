@@ -1,6 +1,6 @@
 {application, fs,
  [{description, "FS Native Listener (Mac Windows Linux)"},
-  {vsn, "4.10.1"},
+  {vsn, "6.1.1"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},

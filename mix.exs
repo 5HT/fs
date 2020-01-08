@@ -3,11 +3,11 @@ defmodule FS.Mixfile do
 
   def project do
     [app: :fs,
-     version: "4.10.1",
+     version: "6.1.1",
      description: "FS Native Listener (Mac Windows Linux)",
-     deps: deps,
+     deps: deps(),
      docs: [],
-     package: package]
+     package: package()]
   end
 
   defp package do
