@@ -11,9 +11,10 @@ start_port(Path, Cwd) ->
             "-m", "-e", "modify", "-e", "close_write", "-e", "moved_to", "-e", "create", "-e", "delete",
             "-e", "attrib", "--quiet", "-r", Path1],
     erlang:open_port({spawn_executable, os:find_executable("sh")},
-        [stream, exit_status, {line, 16384}, {args, Args}, {cd, Cwd}]).
+        [stream, exit_status, binary, {line, 16384}, {args, Args}, {cd, Cwd}]).
 
-line_to_event(Line) ->
+line_to_event(Line0) ->
+    Line = unicode:characters_to_list(Line0, utf8),   
     {match, [Dir, Flags1, DirEntry]} = re:run(Line, re(), [{capture, all_but_first, list}]),
     Flags = [convert_flag(F) || F <- string:tokens(Flags1, ",")],
     Path = Dir ++ DirEntry,
