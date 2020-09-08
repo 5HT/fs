@@ -3,7 +3,7 @@ defmodule FS.Mixfile do
 
   def project do
     [app: :fs,
-     version: "6.1.1",
+     version: "6.9.0",
      description: "FS Native Listener (Mac Windows Linux)",
      deps: deps(),
      docs: [],
