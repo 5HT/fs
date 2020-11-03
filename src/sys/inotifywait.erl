@@ -7,7 +7,7 @@ known_events() -> [created, deleted, renamed, closed, modified, isdir, attribute
 
 start_port(Path, Cwd) ->
     Path1 = filename:absname(Path),
-    Args = ["-c", "inotifywait $0 $@ & PID=$!; read a; kill $PID",
+    Args = ["-c", "inotifywait \"$0\" \"$@\" & PID=$!; read a; kill $PID",
             "-m", "-e", "modify", "-e", "close_write", "-e", "moved_to", "-e", "create", "-e", "delete",
             "-e", "attrib", "--quiet", "-r", Path1],
     erlang:open_port({spawn_executable, os:find_executable("sh")},
