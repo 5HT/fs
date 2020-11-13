@@ -7,6 +7,7 @@ defmodule FS.Mixfile do
      description: "FS Native Listener (Mac Windows Linux)",
      deps: deps(),
      docs: [],
+     compilers: [:rebar3],
      package: package()]
   end
 
@@ -19,6 +20,7 @@ defmodule FS.Mixfile do
    end
 
   defp deps do
-     [{:ex_doc, "~> 0.11", only: :dev}]
+    [{:ex_doc, "~> 0.11", only: :dev},
+     {:mix_rebar3, "~> 0.1", runtime: false}]
   end
 end
