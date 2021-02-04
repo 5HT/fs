@@ -2,3 +2,5 @@
 *.cc linguist-detectable=false
 Makefile linguist-detectable=false
 *.cs linguist-detectable=false
+*.html linguist-detectable=false
+*.htm linguist-detectable=false
