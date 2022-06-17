@@ -48,5 +48,6 @@ Credits
 
 * Vladimir Kirillov
 * Maxim Sokhatsky
+* Dominic Letz 
 
 OM A HUM
