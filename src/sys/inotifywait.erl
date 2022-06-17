@@ -1,6 +1,6 @@
 -module(inotifywait).
 -include("api.hrl").
--export(?API).
+-export([find_executable/0, start_port/2, known_events/0, line_to_event/1]).
 
 find_executable() -> os:find_executable("inotifywait").
 known_events() -> [created, deleted, renamed, closed, modified, isdir, attribute, undefined].
