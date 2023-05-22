@@ -58,14 +58,21 @@ loop() ->
     loop().
 
 find_executable(Cmd, DepsPath) ->
-    case priv_file(Cmd) of
-        false -> mad_file(DepsPath);
-        Priv -> Priv
+    Executable = 
+        case priv_file(Cmd) of
+            false -> mad_file(DepsPath);
+            Priv -> Priv
+        end,
+    case filename:pathtype(Executable) of
+        relative ->
+            filename:join(path(), Executable);
+        _PathType ->
+            Executable
     end.
 
 mad_file(DepsPath) ->
     case filelib:is_regular(DepsPath) of
-        true -> path() ++ "/" ++ DepsPath;
+        true -> DepsPath;
         false ->
             case load_file(DepsPath) of
                 {error, _} ->
