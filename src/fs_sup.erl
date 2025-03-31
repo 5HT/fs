@@ -18,6 +18,8 @@ init([EventHandler, FileHandler, Path]) ->
     Backend = case os:type() of
                   {unix, darwin} -> fsevents;
                   {unix, linux} -> inotifywait;
+                  {unix, freebsd} -> inotifywait;
+                  {unix, openbsd} -> inotifywait;
                   {unix, sunos} -> undefined;
                   {unix, _} -> kqueue;
                   {win32, nt} -> inotifywait_win32;
