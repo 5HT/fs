@@ -3,7 +3,7 @@ defmodule FS.Mixfile do
 
   def project do
     [app: :fs,
-     version: "8.6.1",
+     version: "11.4.1",
      description: "FS Native Listener (Mac Windows Linux)",
      elixir: "~> 1.9",
      deps: deps(),
@@ -15,7 +15,7 @@ defmodule FS.Mixfile do
   defp package do
     [name: :fs,
      files: ["include", "priv", "src", "c_src", "LICENSE", "README.md", "rebar.config"],
-     maintainers: ["Vladimir Kirillov", "Namdak Tonpa"],
+     maintainers: ["Namdak Tonpa"],
      licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/synrc/fs"}]
    end

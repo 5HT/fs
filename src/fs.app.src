@@ -1,11 +1,11 @@
 {application, fs,
  [{description, "FS Native Listener (Mac Windows Linux)"},
-  {vsn, "8.6.1"},
+  {vsn, "11.4.1"},
   {registered, []},
   {applications, [kernel,stdlib]},
   {mod, { fs_app, []}},
   {env, [ {backwards_compatible, true} ]},
-  {maintainers,["Maxim Sokhatsky", "Vladimir Kirillov"]},
+  {maintainers,["Maxim Sokhatsky"]},
   {licenses, ["ISC"]},
   {links,[{"Github","https://github.com/synrc/fs"}]}
   ]}.
